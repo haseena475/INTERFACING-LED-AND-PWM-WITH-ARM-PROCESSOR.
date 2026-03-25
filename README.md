@@ -54,19 +54,63 @@ Header:
 
 # PIN DIAGRAM :
 
+<img width="777" height="475" alt="image" src="https://github.com/user-attachments/assets/14bd2010-a995-496c-ba9b-e22e5ea61950" />
+
 
 # CIRCUIT DIAGRAM:
  
+<img width="787" height="446" alt="image" src="https://github.com/user-attachments/assets/89283875-1220-443e-9d4c-4259a4568d6e" />
+
+<img width="721" height="187" alt="image" src="https://github.com/user-attachments/assets/f016c1da-1988-465b-bad8-88828ad4a815" />
+
  
 # PROGRAM:
 
+#include <lpc17xx.h>
+
+#include "pwm.h"
+
+#include "delay.h"
+
+#define CYCLE_TIME 100
+
+int main() {
+
+    int dutyCycle;
+    
+    SystemInit();
+    
+    PWM_Init(CYCLE_TIME);
+    
+    PWM_Start(PWM_3);
+    
+    while(1) {
+    
+        for(dutyCycle = 0; dutyCycle < CYCLE_TIME; dutyCycle++) {
+        
+            PWM_SetDutyCycle(PWM_3, dutyCycle);
+            
+            DELAY_ms(10);
+        }
+        
+        for(dutyCycle = CYCLE_TIME; dutyCycle > 0; dutyCycle--) {
+        
+            PWM_SetDutyCycle(PWM_3, dutyCycle);
+            
+            DELAY_ms(10);
+            
+        }
+    }
+}
 
  
 # Output:
 
+<img width="505" height="386" alt="image" src="https://github.com/user-attachments/assets/42ca67cb-ae8c-461a-b9d1-460a8595093e" />
 
+# Result:
 
-
+Thus interfacing LED and PWM with ARM processor LPC1768 is done and the outputs are verified.
 
 
 
